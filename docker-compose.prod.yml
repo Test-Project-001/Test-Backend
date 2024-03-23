@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   backend_node:
+    image: nitinsaa1999/testproject-backend_node
     build:
       context: .
       dockerfile: ./Dockerfile
