@@ -1,0 +1,17 @@
+FROM node:20-alpine
+
+# Install required packages including useradd
+RUN apk add --no-cache shadow
+
+RUN useradd -m -s /bin/bash nitin_kumar
+
+USER nitin_kumar
+
+# RUN chown -R node:D:\Test Project\Backend\Test-Backend
+
+# WORKDIR D:\Test Project\Backend\Test-Backend
+
+
+
+
+

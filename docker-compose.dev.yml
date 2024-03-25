@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  backend_node_2:
+    # image: nitinsaa1999/testproject-backend_node_2
+    working_dir: /app
+    build:
+      context: ./
+      dockerfile: Dockerfile2
+    volumes:
+      - "D:/Test Project/Backend/Test-Backend:/app:rw"
+    environment:
+      NODE_ENV: development
+    ports:
+      - 8000:8000
+    restart: unless-stopped
+    command: sleep infinity
