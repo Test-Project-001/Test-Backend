@@ -12,4 +12,4 @@ EXPOSE 8000
 
 RUN npx tsc
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
