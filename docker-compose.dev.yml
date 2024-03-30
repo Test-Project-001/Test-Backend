@@ -1,18 +1,24 @@
 version: '3.8'
 
 services:
-  backend_node_2:
-    # image: nitinsaa1999/testproject-backend_node_2
+  backend_node_dev:
+    image: nitinsaa1999/testproject-backend_node_dev
+    container_name: nitin_backend_dev
     working_dir: /app
     build:
       context: ./
-      dockerfile: Dockerfile2
+      dockerfile: DockerfileDev
     volumes:
-      - "D:/Test Project/Backend/Test-Backend:/app:rw"
-    env_file: ./.env
+      - "D:/Test Project/Backend:/app:rw"
+    env_file: ./.env.dev
     environment:
       NODE_ENV: development
     ports:
       - 8000:8000
     restart: unless-stopped
     command: sleep infinity
+    networks:
+      - node-network
+networks: 
+  node-network:
+    external: true

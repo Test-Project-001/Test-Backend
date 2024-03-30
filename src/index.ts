@@ -8,9 +8,9 @@ const app: Application = express();
 const port = process.env.PORT || 8000;
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Welcome to Express & TypeScript ****Backend ****Server');
+  res.send('Welcome to Express & TypeScript -> ****Backend ****Server');
 });
 
 app.listen(port, () => {
-  console.log(`Server is Fire at: ${port}`);   
+  console.log(`Server is Fire at: ${port} ->  ${process.env.ENV_CHECK}`);   
 });
