@@ -8,8 +8,8 @@ services:
     build:
       context: ./
       dockerfile: DockerfileProd
-    volumes:
-      - "D:/Test Project/Backend:/app:rw"
+    # volumes:
+    #   - "D:/Test Project/Backend:/app:rw"
     env_file: ./.env.prod
     environment:
       NODE_ENV: production
