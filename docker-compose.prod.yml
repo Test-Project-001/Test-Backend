@@ -19,6 +19,21 @@ services:
     command: sleep infinity
     networks:
       - node-network
+
+  nginx_prod:
+    image: nitinsaa1999/testproject-backend_nginx_prod
+    container_name: nitin_nginx_prod
+    build:
+      context: D:\Test Project\proxyServer
+      dockerfile: DockerfileProd
+    ports:
+      - "10002:80"
+    volumes:
+      - D:\Test Project\proxyServer\nginx.prod.conf:/etc/nginx/nginx.conf:ro 
+    depends_on:
+      - backend_node_prod
+    networks:
+      - node-network
 networks: 
   node-network:
-    external: true
+    driver: bridge
