@@ -32,12 +32,12 @@ jobs:
         run: npm test
 
      # This step (optional) builds your application for production using npm run build.
-      - name: Build for production (optional)
-        run: npm run build  # Add this line
+    #   - name: Build for production (optional)
+    #     run: npm run build  # Add this line
 
     # This step (optional) starts your Node.js application using npm start.
-      - name: Start the application (optional)
-        run: npm start     # Add this line
+    #   - name: Start the application (optional)
+    #     run: npm start     # Add this line
 
      # This step builds a Docker image for your application.
       - name: Build Docker image
