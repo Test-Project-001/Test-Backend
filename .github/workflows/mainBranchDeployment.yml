@@ -1,0 +1,87 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Node.js CI/CD of Main Branch
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  samplejob:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+  
+   # This job performs building, testing, and deployment tasks.
+  build-and-deploy:
+    # This job runs on a virtual environment with Ubuntu latest.
+    runs-on: ubuntu-latest
+
+    steps:
+      # This step checks out your project's code from the repository.
+      - uses: actions/checkout@v3
+
+       # This step sets up a Node.js environment with version 20.
+      - name: Use Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+     # This step installs dependencies from package.json using npm ci.
+      - name: Install dependencies
+        run: npm ci
+
+     # This step runs your project's tests using npm test.
+      - name: Run tests
+        run: npm test
+
+     # This step (optional) builds your application for production using npm run build.
+      - name: Build for production (optional)
+        run: npm run build  # Add this line
+
+    # This step (optional) starts your Node.js application using npm start.
+      - name: Start the application (optional)
+        run: npm start     # Add this line
+
+     # This step builds a Docker image for your application.
+      - name: Build Docker image
+        run: docker build -t nitinsaa1999/testproject-backend_node_prod .  # Replace with your image name
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+        # This step pushes the built Docker image to Docker Hub.
+      - name: Push Docker image to Docker Hub
+        run: docker push nitinsaa1999/testproject-backend_node_prod  # Replace with your image name
+
+
+
+
+
+

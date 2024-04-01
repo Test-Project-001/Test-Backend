@@ -1,0 +1,59 @@
+#This workflow defines a CI/CD pipeline for a Node.js backend application.
+name: Node.js CI/CD of Development Branch
+
+
+on:
+  push:
+    # This workflow triggers on push events to the dev branch.
+    branches: [ development ] 
+
+jobs:
+   # This job performs building, testing, and deployment tasks.
+  build-and-deploy:
+    # This job runs on a virtual environment with Ubuntu latest.
+    runs-on: ubuntu-latest
+
+    steps:
+      # This step checks out your project's code from the repository.
+      - uses: actions/checkout@v3
+
+       # This step sets up a Node.js environment with version 20.
+      - name: Use Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+     # This step installs dependencies from package.json using npm ci.
+      - name: Install dependencies
+        run: npm ci
+
+     # This step runs your project's tests using npm test.
+      - name: Run tests
+        run: npm test
+
+     # This step (optional) builds your application for production using npm run build.
+      - name: Build for production (optional)
+        run: npm run build  # Add this line
+
+    # This step (optional) starts your Node.js application using npm start.
+      - name: Start the application (optional)
+        run: npm start     # Add this line
+
+     # This step builds a Docker image for your application.
+      - name: Build Docker image
+        run: docker build -t nitinsaa1999/testproject-backend_node_dev .  # Replace with your image name
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+        # This step pushes the built Docker image to Docker Hub.
+      - name: Push Docker image to Docker Hub
+        run: docker push nitinsaa1999/testproject-backend_node_dev  # Replace with your image name
+
+
+
+
+
