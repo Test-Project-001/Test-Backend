@@ -14,7 +14,7 @@ app.use(cors());
 
 
 app.get('/be', (req: Request, res: Response) => {
-  res.send('Welcome to Express & TypeScript -> ****Backend ****Server');
+  res.send('Welcome to Express & TypeScript -> Backend Server');
 });
 
 app.get('/be/data', (req: Request, res: Response) => {
