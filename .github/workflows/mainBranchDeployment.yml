@@ -68,7 +68,7 @@ jobs:
 
      # This step builds a Docker image for your application.
       - name:  Build Docker image (using DockerfileProd)
-        run: docker build -t nitinsaa1999/testproject-backend_node_prod ../../DockerfileProd  # Replace with your image name
+        run: docker build -t nitinsaa1999/testproject-backend_node_prod Backend\Test-Backend\DockerfileProd  # Replace with your image name
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
